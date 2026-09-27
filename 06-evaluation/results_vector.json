@@ -1,0 +1,205 @@
+{
+ "retrieval_k4": {
+  "hit@k": 0.9583333333333334,
+  "mrr": 0.90625,
+  "k": 4,
+  "n": 24,
+  "misses": [
+   "The robot says E-417, what should I do?"
+  ]
+ },
+ "correctness": 0.9583333333333334,
+ "refusal_accuracy": 1.0,
+ "faithfulness": 0.8888888888888888,
+ "rows": [
+  {
+   "question": "How many days of annual leave do full-time staff get?",
+   "answer": "Full-time employees at Nimbus Robotics receive 23 days of paid annual leave per calendar year [1]. Part-time employees receive leave pro-rated to their contracted hours, but this does not apply to the question about full-time staff.",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How much time off can I take for vacations each year?",
+   "answer": "You can take up to 23 days of paid annual leave per calendar year, with the option to carry over up to 5 unused days into the next year [1]. Leave requests of more than 10 consecutive days must be approved by a department head at least 6 weeks in advance.",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "When do carried-over leave days expire?",
+   "answer": "Carried-over leave days expire on March 31 [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "Where do I upload a medical certificate?",
+   "answer": "According to [1], you must upload the medical certificate to the HR portal \"PeopleDesk\" within 48 hours of returning to work.",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "Which days must I be in the office?",
+   "answer": "You must be in the office on Tuesdays and Thursdays, which are the Core Days [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How much money do I get to set up my home office?",
+   "answer": "You receive a one-time home office stipend of 750 euros, claimable within the first 90 days of employment [1]. The stipend covers desks, chairs, monitors and lighting, but not personal computers.",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How many weeks of parental leave does a secondary caregiver get?",
+   "answer": "Secondary caregivers receive 8 weeks of fully paid parental leave [1].",
+   "correct": true,
+   "faithful": false,
+   "answerable": true
+  },
+  {
+   "question": "What is the maximum payload of the Zephyr-3?",
+   "answer": "The maximum payload of the Zephyr-3 is 1,200 kg [1][2].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How long does a full battery charge last?",
+   "answer": "A full charge provides roughly 9 hours of typical operation [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "At what distance does the robot stop completely for a person?",
+   "answer": "The Zephyr-3 stops completely within 0.5 metres when a person comes within that range, as indicated by its safety lidar [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How often should drive wheels be replaced?",
+   "answer": "Drive wheels should be replaced every 3,000 operating hours [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How long is the battery warranty?",
+   "answer": "The battery pack is covered for 2 years or 2,500 charge cycles, whichever comes first [1]. \n\nNote: The warranty duration is specified in passage [1], but it's worth mentioning that the battery itself has a longer lifespan of 4,000 charge cycles before its capacity drops below 80 percent (passage [2]).",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "What does error E-101 mean?",
+   "answer": "The battery has fallen below 5 percent and the robot could not reach a charging station. [1]",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "The robot shows E-204. What should I do?",
+   "answer": "Remove weight from the pallet until the status light turns green [4].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "The robot says E-417, what should I do?",
+   "answer": "I don't know based on the available documents. [1][2][3]",
+   "correct": false,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "What causes repeated E-520 errors?",
+   "answer": "Repeated E-520 errors usually indicate worn wheel bearings [1]. Schedule a technician visit in this case. [1]",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "Does the Zephyr-3 work on 2.4 GHz Wi-Fi?",
+   "answer": "The Zephyr-3 does not support 2.4 GHz networks [2]. \n\nHowever, it's mentioned that warehouse Wi-Fi access points should be checked on the 5 GHz band [2], but this is a troubleshooting step for when the robot loses its connection to the Nimbus Fleet Console, and doesn't directly answer whether the Zephyr-3 works on 2.4 GHz Wi-Fi.\n\nA more direct answer can be inferred from the fact that there's no mention of 2.4 GHz support in any of the provided passages, but since it explicitly states that the robot does not support 2.4 GHz networks [2], we can conclude that the Zephyr-3 does not work on 2.4 GHz Wi-Fi.\n\n[2]",
+   "correct": true,
+   "faithful": false,
+   "answerable": true
+  },
+  {
+   "question": "What is the minimum password length?",
+   "answer": "The minimum password length is 14 characters [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How much RAM do engineers' laptops have?",
+   "answer": "Engineers receive a laptop with 64 GB of RAM [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "Which VPN client does Nimbus use?",
+   "answer": "Nimbus uses the \"NimbusConnect\" VPN client. [1]",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "How fast does security respond to incidents outside business hours?",
+   "answer": "Within 1 hour [1].",
+   "correct": true,
+   "faithful": false,
+   "answerable": true
+  },
+  {
+   "question": "In which city is the engineering hub?",
+   "answer": "The engineering hub is located in Krak\u00f3w, Poland [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "Who founded Nimbus Robotics?",
+   "answer": "Ines Varga and Tomasz Brenner [1].",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "What are the company's values?",
+   "answer": "The company's three values are Safety First, Build Boringly Reliable Things, and Share What You Learn. [1]",
+   "correct": true,
+   "faithful": true,
+   "answerable": true
+  },
+  {
+   "question": "What is the CEO's salary?",
+   "answer": "I don't know based on the available documents. [1][2][3][4]",
+   "correct": true,
+   "faithful": true,
+   "answerable": false
+  },
+  {
+   "question": "Does Nimbus offer a gym membership?",
+   "answer": "I don't know based on the available documents. [1][2][3][4]",
+   "correct": true,
+   "faithful": true,
+   "answerable": false
+  },
+  {
+   "question": "What is the price of a Zephyr-3?",
+   "answer": "I don't know based on the available documents. [1][2][3][4]",
+   "correct": true,
+   "faithful": true,
+   "answerable": false
+  }
+ ]
+}

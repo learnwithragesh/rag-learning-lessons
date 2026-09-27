@@ -1,0 +1,96 @@
+================================================================================
+PART 1: indexing (runs once, offline)
+================================================================================
+  embedded 24 chunks in 0.27s
+  vector matrix shape: (24, 768)  (chunks x dimensions)
+  saved to /Volumes/Learning/RAG/RAG-Learning/data/index/
+  (vectors.npy = the numbers, chunks.json = text + metadata)
+
+================================================================================
+PART 2: retrieval (runs for every question)
+================================================================================
+
+  Q: How many vacation days do I get?
+    #1  score=0.656  [employee_handbook.md > Annual Leave]
+         Every full-time employee at Nimbus Robotics receives 23 days of paid annual leave per calendar ...
+    #2  score=0.630  [employee_handbook.md > Sick Leave]
+         Employees may take up to 12 days of paid sick leave per year. For absences longer than 3 consec...
+    #3  score=0.619  [employee_handbook.md > Remote Work Policy]
+         Nimbus follows a "Core Days" hybrid model. All employees must be in the office on Tuesdays and ...
+
+  Q: The robot says E-417, what should I do?
+    #1  score=0.699  [zephyr3_error_codes.md > E-101: Low Battery Critical]
+         The battery has fallen below 5 percent and the robot could not reach a charging station. Manual...
+    #2  score=0.693  [zephyr3_error_codes.md > E-777: Fleet Connection Lost]
+         The robot has lost its connection to the Nimbus Fleet Console for more than 30 seconds. It fini...
+    #3  score=0.683  [zephyr3_error_codes.md > E-520: Wheel Motor Overheat]
+         A drive motor exceeded 85 degrees Celsius. The robot stops and waits for the motor to cool belo...
+
+  Q: How long does it take to charge the Zephyr-3?
+    #1  score=0.767  [zephyr3_product_manual.md > Battery and Charging]
+         The Zephyr-3 uses a 48V lithium iron phosphate (LiFePO4) battery pack with a capacity of 105 Ah...
+    #2  score=0.716  [zephyr3_product_manual.md > Warranty]
+         The Zephyr-3 comes with a 3-year limited warranty covering the chassis, motors and electronics....
+    #3  score=0.679  [zephyr3_product_manual.md > Overview]
+         The Zephyr-3 is an autonomous mobile robot (AMR) designed by Nimbus Robotics for moving pallets...
+
+  Q: Who founded the company?
+    #1  score=0.719  [company_overview.md > History]
+         Nimbus Robotics was founded in 2017 in Rotterdam, Netherlands, by Ines Varga and Tomasz Brenner...
+    #2  score=0.599  [company_overview.md > Mission and Values]
+         The mission of Nimbus Robotics is "to make every warehouse safer and calmer." The company's thr...
+    #3  score=0.579  [company_overview.md > Offices]
+         Nimbus has three offices: headquarters in Rotterdam, an engineering hub in Kraków, Poland, and ...
+
+  Q: What happens if my Wi-Fi is 2.4 GHz?
+    #1  score=0.628  [zephyr3_error_codes.md > E-777: Fleet Connection Lost]
+         The robot has lost its connection to the Nimbus Fleet Console for more than 30 seconds. It fini...
+    #2  score=0.606  [it_faq.md > How do I connect to the VPN?]
+         Nimbus uses the "NimbusConnect" VPN client. VPN is required to access the Fleet Console and int...
+    #3  score=0.599  [employee_handbook.md > Remote Work Policy]
+         Nimbus follows a "Core Days" hybrid model. All employees must be in the office on Tuesdays and ...
+
+================================================================================
+PART 2b: a real retrieval FAILURE (exact codes)
+================================================================================
+  Where does the correct 'E-417' chunk rank among all 24 chunks?
+
+  [MISS] rank  9  for query 'The robot says E-417, what should I do?'
+  [MISS] rank  5  for query 'E-417'
+  [OK ] rank  1  for query 'lidar calibration error'
+
+  -> Embeddings capture MEANING ('lidar calibration') but are weak at
+     EXACT tokens like error codes, product IDs, names, numbers.
+     With k=3 the LLM would never see the right chunk.
+     Fix: hybrid search (keyword + vector), Lesson 7.
+
+================================================================================
+PART 3: metadata filtering
+================================================================================
+  Q: 'How long does something take?'   (vague on purpose)
+
+  No filter:
+    #1  score=0.642  [employee_handbook.md > Sick Leave]
+         Employees may take up to 12 days of paid sick leave per year. For absences longer than 3 consec...
+    #2  score=0.626  [zephyr3_error_codes.md > E-417: Lidar Calibration Drift]
+         The lidar's measured distances disagree with known fiducial marker positions by more than 3 cen...
+
+  where={'source': 'it_faq.md'}:
+    #1  score=0.621  [it_faq.md > How do I report a security incident?]
+         Email security@nimbus.internal or post in the #sec-incidents Slack channel immediately. Do not ...
+    #2  score=0.609  [it_faq.md > Can I install my own software?]
+         Software from the Nimbus Self-Service catalog can be installed without approval. Anything else ...
+
+  -> filters narrow the search space BEFORE ranking. Used for
+     permissions (only docs this user may see), product lines, dates...
+
+================================================================================
+PART 4: brute-force search cost vs collection size (random 768-d vectors)
+================================================================================
+     1,000 vectors  ->      0.03 ms per query   (3 MB RAM)
+    10,000 vectors  ->      0.29 ms per query   (31 MB RAM)
+   100,000 vectors  ->      3.66 ms per query   (307 MB RAM)
+   500,000 vectors  ->     19.38 ms per query   (1,536 MB RAM)
+  -> time grows linearly with N. Fine up to ~1M on one machine;
+     beyond that, vector DBs use ANN indexes (HNSW, IVF) for ~log(N) search.
+

@@ -1,0 +1,14 @@
+[
+ {"question": "Who founded Nimbus Robotics?", "answer": "Ines Varga and Tomasz Brenner [1].", "supported": true},
+ {"question": "Who founded Nimbus Robotics?", "answer": "Ines Varga and Elon Musk [1].", "supported": false},
+ {"question": "What is the minimum password length?", "answer": "The minimum password length is 14 characters [1].", "supported": true},
+ {"question": "What is the minimum password length?", "answer": "The minimum password length is 12 characters [1].", "supported": false},
+ {"question": "What is the maximum payload of the Zephyr-3?", "answer": "The maximum payload of the Zephyr-3 is 1,200 kg [1][2].", "supported": true},
+ {"question": "What is the maximum payload of the Zephyr-3?", "answer": "The maximum payload is 1,200 kg and it can climb stairs [1].", "supported": false},
+ {"question": "How fast does security respond to incidents outside business hours?", "answer": "Within 1 hour [1].", "supported": true},
+ {"question": "How fast does security respond to incidents outside business hours?", "answer": "Within 10 minutes [1].", "supported": false},
+ {"question": "Does the Zephyr-3 work on 2.4 GHz Wi-Fi?", "answer": "The Zephyr-3 does not support 2.4 GHz networks [2].", "supported": true},
+ {"question": "What causes repeated E-520 errors?", "answer": "Repeated E-520 errors usually indicate worn wheel bearings [1]. Schedule a technician visit in this case. [1]", "supported": true},
+ {"question": "The robot shows E-204. What should I do?", "answer": "Remove weight from the pallet until the status light turns green [4].", "supported": true},
+ {"question": "How long is the battery warranty?", "answer": "The battery is covered for 5 years [1].", "supported": false}
+]

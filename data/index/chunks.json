@@ -1,0 +1,146 @@
+[
+ {
+  "id": "company_overview.md#0",
+  "text": "Nimbus Robotics — Company Overview > History\nNimbus Robotics was founded in 2017 in Rotterdam, Netherlands, by Ines Varga and Tomasz Brenner. Its first product, the Zephyr-1, shipped in 2019. The Zephyr-3, released in 2024, is the company's current flagship robot.",
+  "source": "company_overview.md",
+  "section": "History"
+ },
+ {
+  "id": "company_overview.md#1",
+  "text": "Nimbus Robotics — Company Overview > Offices\nNimbus has three offices: headquarters in Rotterdam, an engineering hub in Kraków, Poland, and a sales office in Austin, Texas. The Kraków office hosts the lidar and perception team.",
+  "source": "company_overview.md",
+  "section": "Offices"
+ },
+ {
+  "id": "company_overview.md#2",
+  "text": "Nimbus Robotics — Company Overview > Mission and Values\nThe mission of Nimbus Robotics is \"to make every warehouse safer and calmer.\" The company's three values are Safety First, Build Boringly Reliable Things, and Share What You Learn.",
+  "source": "company_overview.md",
+  "section": "Mission and Values"
+ },
+ {
+  "id": "company_overview.md#3",
+  "text": "Nimbus Robotics — Company Overview > Customers\nNimbus serves more than 140 logistics customers across 11 countries. Its largest customer operates 380 Zephyr robots across 9 distribution centres.",
+  "source": "company_overview.md",
+  "section": "Customers"
+ },
+ {
+  "id": "employee_handbook.md#0",
+  "text": "Nimbus Robotics — Employee Handbook > Annual Leave\nEvery full-time employee at Nimbus Robotics receives 23 days of paid annual leave per calendar year. Part-time employees receive leave pro-rated to their contracted hours. Up to 5 unused days may be carried over into the next year, but carried-over days expire on March 31. Leave requests of more than 10 consecutive days must be approved by a department head at least 6 weeks in advance.",
+  "source": "employee_handbook.md",
+  "section": "Annual Leave"
+ },
+ {
+  "id": "employee_handbook.md#1",
+  "text": "Nimbus Robotics — Employee Handbook > Sick Leave\nEmployees may take up to 12 days of paid sick leave per year. For absences longer than 3 consecutive days, a medical certificate must be uploaded to the HR portal \"PeopleDesk\" within 48 hours of returning to work.",
+  "source": "employee_handbook.md",
+  "section": "Sick Leave"
+ },
+ {
+  "id": "employee_handbook.md#2",
+  "text": "Nimbus Robotics — Employee Handbook > Remote Work Policy\nNimbus follows a \"Core Days\" hybrid model. All employees must be in the office on Tuesdays and Thursdays, which are the Core Days. The remaining days may be worked remotely. Employees working remotely must be reachable on Slack between 10:00 and 16:00 local time. Fully remote arrangements require written approval from the VP of People, Dana Okafor.",
+  "source": "employee_handbook.md",
+  "section": "Remote Work Policy"
+ },
+ {
+  "id": "employee_handbook.md#3",
+  "text": "Nimbus Robotics — Employee Handbook > Home Office Stipend\nEach employee receives a one-time home office stipend of 750 euros, claimable within the first 90 days of employment. Receipts must be submitted through PeopleDesk. The stipend covers desks, chairs, monitors and lighting, but not personal computers, which are provided by IT.",
+  "source": "employee_handbook.md",
+  "section": "Home Office Stipend"
+ },
+ {
+  "id": "employee_handbook.md#4",
+  "text": "Nimbus Robotics — Employee Handbook > Parental Leave\nPrimary caregivers receive 20 weeks of fully paid parental leave. Secondary caregivers receive 8 weeks of fully paid parental leave. Parental leave can be taken in up to three separate blocks within 18 months of the child's birth or adoption.",
+  "source": "employee_handbook.md",
+  "section": "Parental Leave"
+ },
+ {
+  "id": "it_faq.md#0",
+  "text": "Nimbus Robotics — IT Help Desk FAQ > How do I reset my password?\nGo to https://id.nimbus.internal and click \"Forgot password\". Passwords must be at least 14 characters long and are rotated every 180 days. You cannot reuse any of your last 6 passwords.",
+  "source": "it_faq.md",
+  "section": "How do I reset my password?"
+ },
+ {
+  "id": "it_faq.md#1",
+  "text": "Nimbus Robotics — IT Help Desk FAQ > Which laptop will I get?\nEngineers receive a 16-inch laptop with 64 GB of RAM. All other staff receive a 14-inch laptop with 32 GB of RAM. Laptops are refreshed every 3 years.",
+  "source": "it_faq.md",
+  "section": "Which laptop will I get?"
+ },
+ {
+  "id": "it_faq.md#2",
+  "text": "Nimbus Robotics — IT Help Desk FAQ > How do I connect to the VPN?\nNimbus uses the \"NimbusConnect\" VPN client. VPN is required to access the Fleet Console and internal wikis from outside the office. Multi-factor authentication through the Authenticator app is mandatory.",
+  "source": "it_faq.md",
+  "section": "How do I connect to the VPN?"
+ },
+ {
+  "id": "it_faq.md#3",
+  "text": "Nimbus Robotics — IT Help Desk FAQ > How do I report a security incident?\nEmail security@nimbus.internal or post in the #sec-incidents Slack channel immediately. Do not try to investigate suspected phishing emails yourself. The security on-call engineer will respond within 15 minutes during business hours and within 1 hour outside business hours.",
+  "source": "it_faq.md",
+  "section": "How do I report a security incident?"
+ },
+ {
+  "id": "it_faq.md#4",
+  "text": "Nimbus Robotics — IT Help Desk FAQ > Can I install my own software?\nSoftware from the Nimbus Self-Service catalog can be installed without approval. Anything else requires a ticket in the IT portal and approval from the Security team, which usually takes 2 business days.",
+  "source": "it_faq.md",
+  "section": "Can I install my own software?"
+ },
+ {
+  "id": "zephyr3_error_codes.md#0",
+  "text": "Zephyr-3 Error Codes and Troubleshooting > E-101: Low Battery Critical\nThe battery has fallen below 5 percent and the robot could not reach a charging station. Manually push the robot to a charger using the tow handle after pressing the \"Free Wheel\" button on the rear panel.",
+  "source": "zephyr3_error_codes.md",
+  "section": "E-101: Low Battery Critical"
+ },
+ {
+  "id": "zephyr3_error_codes.md#1",
+  "text": "Zephyr-3 Error Codes and Troubleshooting > E-204: Payload Overweight\nThe load cells measured a payload above 1,200 kg. The robot will refuse to move. Remove weight from the pallet until the status light turns green.",
+  "source": "zephyr3_error_codes.md",
+  "section": "E-204: Payload Overweight"
+ },
+ {
+  "id": "zephyr3_error_codes.md#2",
+  "text": "Zephyr-3 Error Codes and Troubleshooting > E-417: Lidar Calibration Drift\nThe lidar's measured distances disagree with known fiducial marker positions by more than 3 centimetres. First clean the lidar window. If the error persists, run the \"Auto-Calibrate\" routine from the Nimbus Fleet Console, which takes about 4 minutes and requires the robot to be parked on a calibration marker (marker ID 0 to 9).",
+  "source": "zephyr3_error_codes.md",
+  "section": "E-417: Lidar Calibration Drift"
+ },
+ {
+  "id": "zephyr3_error_codes.md#3",
+  "text": "Zephyr-3 Error Codes and Troubleshooting > E-520: Wheel Motor Overheat\nA drive motor exceeded 85 degrees Celsius. The robot stops and waits for the motor to cool below 60 degrees Celsius before resuming. Repeated E-520 errors usually indicate worn wheel bearings; schedule a technician visit.",
+  "source": "zephyr3_error_codes.md",
+  "section": "E-520: Wheel Motor Overheat"
+ },
+ {
+  "id": "zephyr3_error_codes.md#4",
+  "text": "Zephyr-3 Error Codes and Troubleshooting > E-777: Fleet Connection Lost\nThe robot has lost its connection to the Nimbus Fleet Console for more than 30 seconds. It finishes its current task, parks in the nearest safe zone, and waits. Check the warehouse Wi-Fi access points on the 5 GHz band; the Zephyr-3 does not support 2.4 GHz networks.",
+  "source": "zephyr3_error_codes.md",
+  "section": "E-777: Fleet Connection Lost"
+ },
+ {
+  "id": "zephyr3_product_manual.md#0",
+  "text": "Zephyr-3 Warehouse Robot — Product Manual > Overview\nThe Zephyr-3 is an autonomous mobile robot (AMR) designed by Nimbus Robotics for moving pallets in warehouses. It has a maximum payload of 1,200 kg and a top speed of 2.1 metres per second when unloaded and 1.4 metres per second when fully loaded. It navigates using a 360-degree lidar sensor combined with floor-mounted QR fiducial markers.",
+  "source": "zephyr3_product_manual.md",
+  "section": "Overview"
+ },
+ {
+  "id": "zephyr3_product_manual.md#1",
+  "text": "Zephyr-3 Warehouse Robot — Product Manual > Battery and Charging\nThe Zephyr-3 uses a 48V lithium iron phosphate (LiFePO4) battery pack with a capacity of 105 Ah. A full charge provides roughly 9 hours of typical operation. The robot docks itself automatically at a charging station when the battery falls below 18 percent. Charging from 18 percent to 90 percent takes about 55 minutes. The battery is rated for 4,000 charge cycles before its capacity drops below 80 percent.",
+  "source": "zephyr3_product_manual.md",
+  "section": "Battery and Charging"
+ },
+ {
+  "id": "zephyr3_product_manual.md#2",
+  "text": "Zephyr-3 Warehouse Robot — Product Manual > Safety Features\nThe Zephyr-3 has two red emergency stop (E-stop) buttons, one on each side of the chassis. Its safety lidar creates a protective field that slows the robot when a person comes within 2 metres and stops it completely within 0.5 metres. The robot emits a blue warning light projected on the floor 3 metres ahead of its direction of travel.",
+  "source": "zephyr3_product_manual.md",
+  "section": "Safety Features"
+ },
+ {
+  "id": "zephyr3_product_manual.md#3",
+  "text": "Zephyr-3 Warehouse Robot — Product Manual > Maintenance Schedule\nDrive wheels should be inspected every 500 operating hours and replaced every 3,000 operating hours. The lidar window must be cleaned weekly with a lint-free cloth and isopropyl alcohol. A full service by a certified Nimbus technician is required every 12 months to keep the warranty valid.",
+  "source": "zephyr3_product_manual.md",
+  "section": "Maintenance Schedule"
+ },
+ {
+  "id": "zephyr3_product_manual.md#4",
+  "text": "Zephyr-3 Warehouse Robot — Product Manual > Warranty\nThe Zephyr-3 comes with a 3-year limited warranty covering the chassis, motors and electronics. The battery pack is covered for 2 years or 2,500 charge cycles, whichever comes first. Damage caused by operating the robot outside its rated payload is not covered.",
+  "source": "zephyr3_product_manual.md",
+  "section": "Warranty"
+ }
+]

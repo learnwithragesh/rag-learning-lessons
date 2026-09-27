@@ -1,0 +1,12 @@
+[
+ {"question": "How much holiday can I take?", "expected_section": "Annual Leave", "must_contain": ["23"]},
+ {"question": "I'm unwell, how many days can I stay home and still get paid?", "expected_section": "Sick Leave", "must_contain": ["12"]},
+ {"question": "Can I work from my house instead of commuting?", "expected_section": "Remote Work Policy", "must_contain": []},
+ {"question": "I just had a baby. How long can I stay home?", "expected_section": "Parental Leave", "must_contain": []},
+ {"question": "How heavy a load can the machine carry?", "expected_section": "Overview", "must_contain": ["1,200"]},
+ {"question": "Will the machine run over someone standing in its way?", "expected_section": "Safety Features", "must_contain": []},
+ {"question": "When does the machine plug itself in?", "expected_section": "Battery and Charging", "must_contain": ["18"]},
+ {"question": "I think I clicked a dodgy link in an email, who do I tell?", "expected_section": "How do I report a security incident?", "must_contain": []},
+ {"question": "Who started the business?", "expected_section": "History", "must_contain": []},
+ {"question": "What does the firm stand for?", "expected_section": "Mission and Values", "must_contain": []}
+]

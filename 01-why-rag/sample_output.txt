@@ -1,0 +1,58 @@
+================================================================================
+Q1: How many days of paid annual leave do Nimbus Robotics employees get?
+================================================================================
+
+[A] WITHOUT context (closed-book):
+    I couldn't find any information on the number of paid annual leave days that Nimbus Robotics employees receive. As a conversational AI, I don't have direct access to internal company policies or employee benefits for specific companies like Nimbus Robotics.
+    
+    However, I can suggest some possible sources where you might be able to find this information:
+    
+    1. **Company website**: Check the official Nimbus Robotics website for an "About Us" or "Careers" section that may mention employee benefits.
+    2. **Glassdoor or LinkedIn**: Look up reviews and ratings from current or former employees on platforms like Glassdoor or LinkedIn, which might provide insights into company culture and benefits.
+    3. **Employee handbook (if available)**: If you have access to an employee handbook or internal documentation, it should outline the company's policies regarding paid annual leave.
+    
+    If none of these sources yield the information you're looking for, I'd be happy to help with any other questions!
+
+[B] WITH context (open-book, i.e. manual RAG):
+    23 days
+
+================================================================================
+Q2: What does error code E-417 mean on the Zephyr-3 robot and how do I fix it?
+================================================================================
+
+[A] WITHOUT context (closed-book):
+    I couldn't find any information about a "Zephyr-3" robot or an error code "E-417". It's possible that this is a fictional or non-existent product, or perhaps it's a very specific or niche device.
+    
+    If you could provide more context or details about the Zephyr-3 robot and where you encountered the error code E-417, I may be able to help you better. Alternatively, if you have any documentation or resources related to the Zephyr-3 robot, please share them with me so I can try to assist you further.
+    
+    In general, when encountering an error code on a device, it's often helpful to:
+    
+    1. Check the user manual or documentation for the device.
+    2. Search online for specific information about the error code and the device model.
+    3. Contact the manufacturer or customer support for assistance.
+    
+    If you have any additional details or context about the Zephyr-3 robot and the error code E-417, I'll do my best to help you troubleshoot the issue!
+
+[B] WITH context (open-book, i.e. manual RAG):
+    I don't know. The context only mentions "E-417" as an error code related to a lidar calibration issue, but it doesn't mention the Zephyr-3 robot.
+
+================================================================================
+Q3: Which days are Core Days at Nimbus Robotics?
+================================================================================
+
+[A] WITHOUT context (closed-book):
+    I don't have access to a search engine to provide information on the specific work schedule or policies of Nimbus Robotics.
+
+[B] WITH context (open-book, i.e. manual RAG):
+    Tuesdays and Thursdays.
+
+================================================================================
+[C] Hallucination demo: force the model to answer with just a number
+================================================================================
+  attempt 1: '20'   (true answer: 23)
+  attempt 2: "I can't answer that question. Is there anything else I can help you with?"   (true answer: 23)
+  attempt 3: '20'   (true answer: 23)
+  -> wrong numbers stated confidently (sometimes a refusal). Never 23. This is hallucination.
+
+Takeaway: same model, same question. The only difference is the
+evidence we put in the prompt. RAG automates finding that evidence.

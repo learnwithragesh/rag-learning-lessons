@@ -1,0 +1,123 @@
+================================================================================
+PART 1: keyword search (BM25) vs vector search
+================================================================================
+  Query tokens for BM25: ['robot', 'says', 'e-417']
+  IDF of 'e-417' = 2.81 (rare, so weighs a lot)   IDF of 'robot' = 0.78 (common)
+
+  VECTOR search for 'The robot says E-417, what should I do?':
+    #1 score=0.699  E-101: Low Battery Critical
+    #2 score=0.693  E-777: Fleet Connection Lost
+    #3 score=0.683  E-520: Wheel Motor Overheat
+    #4 score=0.664  Battery and Charging
+
+  BM25 search:
+    #1 score=3.259  E-417: Lidar Calibration Drift
+    #2 score=1.195  Safety Features
+    #3 score=1.144  E-101: Low Battery Critical
+    #4 score=1.124  Warranty
+
+  ...but BM25 fails on paraphrases. BM25 for 'How much holiday can I take?':
+    #1 score=2.902  Sick Leave
+  (no chunk contains 'holiday'; only 'take' matched, in Sick Leave.)
+  VECTOR for the same:
+    #1 score=0.630  Annual Leave
+    #2 score=0.624  Sick Leave
+    #3 score=0.621  Remote Work Policy
+
+================================================================================
+PART 2: hybrid search = vector + BM25 fused with RRF
+================================================================================
+  'The robot says E-417, what should I do?'
+    #1 score=0.032  E-101: Low Battery Critical
+    #2 score=0.031  Safety Features
+    #3 score=0.031  E-417: Lidar Calibration Drift
+    #4 score=0.031  Battery and Charging
+
+  'How much holiday can I take?'
+    #1 score=0.033  Sick Leave
+    #2 score=0.016  Annual Leave
+    #3 score=0.016  Remote Work Policy
+    #4 score=0.016  Home Office Stipend
+
+  -> hybrid pulls E-417 into the top-4 (BM25's strength) while keeping
+     Annual Leave for the paraphrase (the vector's strength).
+
+================================================================================
+PART 3: all retrievers on two eval sets
+================================================================================
+
+  MAIN eval set (24 answerable, mostly same words as the docs)
+  retriever       hit@1  hit@3  hit@4  MRR@4
+  vector           0.88   0.92   0.96   0.91
+                 misses@4: ['The robot says E-417, what should I do?']
+  bm25             0.96   1.00   1.00   0.98
+  hybrid (RRF)     0.88   1.00   1.00   0.93
+
+  PARAPHRASE eval set (10 questions, different words than the docs)
+  retriever       hit@1  hit@3  hit@4  MRR@4
+  vector           0.70   0.90   0.90   0.80
+                 misses@4: ['When does the machine plug itself in?']
+  bm25             0.20   0.40   0.40   0.30
+                 misses@4: ['How much holiday can I take?', 'I just had a baby. How long can I stay home?', 'How heavy a load can the machine carry?', 'Will the machine run over someone standing in its way?', 'Who started the business?', 'What does the firm stand for?']
+  hybrid (RRF)     0.40   0.90   0.90   0.62
+                 misses@4: ['Will the machine run over someone standing in its way?']
+
+  -> BM25 wins when questions reuse the documents' words and collapses on
+     paraphrases. Vector is the reverse. Hybrid is never the worst: robust.
+
+================================================================================
+PART 4: HyDE (search with a hypothetical answer)
+================================================================================
+  'How much holiday can I take?'
+   plain vector:
+    #1 score=0.630  Annual Leave
+    #2 score=0.624  Sick Leave
+    #3 score=0.621  Remote Work Policy
+   HyDE        :
+    #1 score=0.846  Annual Leave
+    #2 score=0.761  Sick Leave
+    #3 score=0.748  Home Office Stipend
+
+  'My robot keeps stopping because the motor gets hot'
+   plain vector:
+    #1 score=0.779  E-520: Wheel Motor Overheat
+    #2 score=0.708  Safety Features
+    #3 score=0.684  E-101: Low Battery Critical
+   HyDE        :
+    #1 score=0.787  E-520: Wheel Motor Overheat
+    #2 score=0.709  Safety Features
+    #3 score=0.700  E-101: Low Battery Critical
+
+================================================================================
+PART 5: LLM reranking (hybrid top-8 -> LLM scores each -> best 4)
+================================================================================
+  'What should I clean before running a calibration?'
+   hybrid only:
+    #1 score=0.033  E-417: Lidar Calibration Drift
+    #2 score=0.032  E-520: Wheel Motor Overheat
+    #3 score=0.030  Battery and Charging
+    #4 score=0.016  Maintenance Schedule
+   reranked   :
+    #1 score=0.033 rerank=8  E-417: Lidar Calibration Drift
+    #2 score=0.016 rerank=8  Maintenance Schedule
+    #3 score=0.032 rerank=6  E-520: Wheel Motor Overheat
+    #4 score=0.015 rerank=6  E-204: Payload Overweight
+
+  'How much holiday can I take?'
+   hybrid only:
+    #1 score=0.033  Sick Leave
+    #2 score=0.016  Annual Leave
+    #3 score=0.016  Remote Work Policy
+    #4 score=0.016  Home Office Stipend
+   reranked   :
+    #1 score=0.015 rerank=9  Parental Leave
+    #2 score=0.033 rerank=8  Sick Leave
+    #3 score=0.016 rerank=8  Annual Leave
+    #4 score=0.016 rerank=8  Remote Work Policy
+
+================================================================================
+PART 6: the E-417 question end to end, before vs after
+================================================================================
+  [vector] I don't know based on the available documents. [1][2][3]
+  [hybrid] First clean the lidar window. If the error persists, run the "Auto-Calibrate" routine from the Nimbus Fleet Console [3].
+

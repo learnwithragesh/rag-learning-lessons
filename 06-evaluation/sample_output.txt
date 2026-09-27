@@ -1,0 +1,100 @@
+Eval set: 27 questions (24 answerable, 3 unanswerable)
+
+================================================================================
+PART 1: retrieval metrics (vector search)
+================================================================================
+    k   hit@k     MRR
+    1    0.88    0.88
+    3    0.92    0.90
+    4    0.96    0.91
+    5    0.96    0.91
+   10    1.00    0.91
+
+  Misses at k=4 (1):
+    - The robot says E-417, what should I do?
+
+================================================================================
+PART 2: calibrate the LLM judge on answers whose truth we KNOW
+================================================================================
+  [agree   ] truth=supported   Ines Varga and Tomasz Brenner [1].
+  [agree   ] truth=UNSUPPORTED Ines Varga and Elon Musk [1].
+  [agree   ] truth=supported   The minimum password length is 14 characters [1].
+  [agree   ] truth=UNSUPPORTED The minimum password length is 12 characters [1].
+  [agree   ] truth=supported   The maximum payload of the Zephyr-3 is 1,200 kg [1][2].
+  [agree   ] truth=UNSUPPORTED The maximum payload is 1,200 kg and it can climb stairs [1].
+  [DISAGREE] truth=supported   Within 1 hour [1].
+  [agree   ] truth=UNSUPPORTED Within 10 minutes [1].
+  [agree   ] truth=supported   The Zephyr-3 does not support 2.4 GHz networks [2].
+  [agree   ] truth=supported   Repeated E-520 errors usually indicate worn wheel bearings [
+  [agree   ] truth=supported   Remove weight from the pallet until the status light turns g
+  [agree   ] truth=UNSUPPORTED The battery is covered for 5 years [1].
+
+  judge agrees with human labels on 11/12 cases
+
+================================================================================
+PART 3: generation metrics (vector search, k=4), with the LLM as judge
+================================================================================
+  [OK   ] How many days of annual leave do full-time staff get?
+           -> Full-time employees at Nimbus Robotics receive 23 days of paid annual leave per calendar year [1]. Part-time e
+  [OK   ] How much time off can I take for vacations each year?
+           -> You can take up to 23 days of paid annual leave per calendar year, with the option to carry over up to 5 unuse
+  [OK   ] When do carried-over leave days expire?
+           -> Carried-over leave days expire on March 31 [1].
+  [OK   ] Where do I upload a medical certificate?
+           -> According to [1], you must upload the medical certificate to the HR portal "PeopleDesk" within 48 hours of ret
+  [OK   ] Which days must I be in the office?
+           -> You must be in the office on Tuesdays and Thursdays, which are the Core Days [1].
+  [OK   ] How much money do I get to set up my home office?
+           -> You receive a one-time home office stipend of 750 euros, claimable within the first 90 days of employment [1].
+  [OK   UNFAITHFUL] How many weeks of parental leave does a secondary caregiver get?
+           -> Secondary caregivers receive 8 weeks of fully paid parental leave [1].
+  [OK   ] What is the maximum payload of the Zephyr-3?
+           -> The maximum payload of the Zephyr-3 is 1,200 kg [1][2].
+  [OK   ] How long does a full battery charge last?
+           -> A full charge provides roughly 9 hours of typical operation [1].
+  [OK   ] At what distance does the robot stop completely for a person?
+           -> The Zephyr-3 stops completely within 0.5 metres when a person comes within that range, as indicated by its saf
+  [OK   ] How often should drive wheels be replaced?
+           -> Drive wheels should be replaced every 3,000 operating hours [1].
+  [OK   ] How long is the battery warranty?
+           -> The battery pack is covered for 2 years or 2,500 charge cycles, whichever comes first [1]. 
+
+Note: The warrant
+  [OK   ] What does error E-101 mean?
+           -> The battery has fallen below 5 percent and the robot could not reach a charging station. [1]
+  [OK   ] The robot shows E-204. What should I do?
+           -> Remove weight from the pallet until the status light turns green [4].
+  [FAIL ] The robot says E-417, what should I do?
+           -> I don't know based on the available documents. [1][2][3]
+  [OK   ] What causes repeated E-520 errors?
+           -> Repeated E-520 errors usually indicate worn wheel bearings [1]. Schedule a technician visit in this case. [1]
+  [OK   UNFAITHFUL] Does the Zephyr-3 work on 2.4 GHz Wi-Fi?
+           -> The Zephyr-3 does not support 2.4 GHz networks [2]. 
+
+However, it's mentioned that warehouse Wi-Fi access poin
+  [OK   ] What is the minimum password length?
+           -> The minimum password length is 14 characters [1].
+  [OK   ] How much RAM do engineers' laptops have?
+           -> Engineers receive a laptop with 64 GB of RAM [1].
+  [OK   ] Which VPN client does Nimbus use?
+           -> Nimbus uses the "NimbusConnect" VPN client. [1]
+  [OK   UNFAITHFUL] How fast does security respond to incidents outside business hours?
+           -> Within 1 hour [1].
+  [OK   ] In which city is the engineering hub?
+           -> The engineering hub is located in Kraków, Poland [1].
+  [OK   ] Who founded Nimbus Robotics?
+           -> Ines Varga and Tomasz Brenner [1].
+  [OK   ] What are the company's values?
+           -> The company's three values are Safety First, Build Boringly Reliable Things, and Share What You Learn. [1]
+  [OK   ] What is the CEO's salary?
+           -> I don't know based on the available documents. [1][2][3][4]
+  [OK   ] Does Nimbus offer a gym membership?
+           -> I don't know based on the available documents. [1][2][3][4]
+  [OK   ] What is the price of a Zephyr-3?
+           -> I don't know based on the available documents. [1][2][3][4]
+
+  correctness (answerable)   : 0.96
+  refusal accuracy (unanswer.): 1.00
+  faithfulness (LLM judge)   : 0.89
+
+  full per-question results saved to results_vector.json

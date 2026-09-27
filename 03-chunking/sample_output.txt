@@ -1,0 +1,59 @@
+================================================================================
+PART 1: four chunking strategies on employee_handbook.md
+================================================================================
+
+--- 1) Fixed 300 characters: 6 chunks (showing 3) ---
+  [0] '# Nimbus Robotics — Employee Handbook\n\n## Annual Leave\nEvery full-time employee at Nimbus Robotics receives 23 days of paid annual leave per calendar year. Part-time employees receive leave pro-rated to their contracted hours. Up to 5 unused days may be carried over into the next year, but carried-o'
+  [1] 'ver days expire on March 31. Leave requests of more than 10 consecutive days must be approved by a department head at least 6 weeks in advance.\n\n## Sick Leave\nEmployees may take up to 12 days of paid sick leave per year. For absences longer than 3 consecutive days, a medical certificate must be uplo'
+  [2] 'aded to the HR portal "PeopleDesk" within 48 hours of returning to work.\n\n## Remote Work Policy\nNimbus follows a "Core Days" hybrid model. All employees must be in the office on Tuesdays and Thursdays, which are the Core Days. The remaining days may be worked remotely. Employees working remotely mus'
+  ^ cuts words and sentences in half, e.g. mid-word at the edges.
+
+--- 2) 60-word windows, 15-word overlap: 6 chunks (showing 2) ---
+  [0] '# Nimbus Robotics — Employee Handbook ## Annual Leave Every full-time employee at Nimbus Robotics receives 23 days of paid annual leave per calendar year. Part-time employees receive leave pro-rated to their contracted hours. Up to 5 unused days may be carried over into the next year, but carried-over days expire on March 31. Leave requests of more than 10'
+  [1] 'next year, but carried-over days expire on March 31. Leave requests of more than 10 consecutive days must be approved by a department head at least 6 weeks in advance. ## Sick Leave Employees may take up to 12 days of paid sick leave per year. For absences longer than 3 consecutive days, a medical certificate must be uploaded to'
+  ^ the end of chunk [0] is repeated at the start of chunk [1] (overlap).
+
+--- 3) Sentence packing (<=60 words): 5 chunks (showing 3) ---
+  [0] '# Nimbus Robotics — Employee Handbook\n\n## Annual Leave\nEvery full-time employee at Nimbus Robotics receives 23 days of paid annual leave per calendar year. Part-time employees receive leave pro-rated to their contracted hours. Up to 5 unused days may be carried over into the next year, but carried-over days expire on March 31.'
+  [1] 'Leave requests of more than 10 consecutive days must be approved by a department head at least 6 weeks in advance. ## Sick Leave\nEmployees may take up to 12 days of paid sick leave per year.'
+  [2] 'For absences longer than 3 consecutive days, a medical certificate must be uploaded to the HR portal "PeopleDesk" within 48 hours of returning to work. ## Remote Work Policy\nNimbus follows a "Core Days" hybrid model. All employees must be in the office on Tuesdays and Thursdays, which are the Core Days. The remaining days may be worked remotely.'
+  ^ never cuts a sentence, but can still mix two topics in one chunk.
+
+--- 4) Markdown sections + contextual header: 5 chunks (showing 3) ---
+  [0] 'Nimbus Robotics — Employee Handbook > Annual Leave\nEvery full-time employee at Nimbus Robotics receives 23 days of paid annual leave per calendar year. Part-time employees receive leave pro-rated to their contracted hours. Up to 5 unused days may be carried over into the next year, but carried-over days expire on March 31. Leave requests of more than 10 consecutive days must be approved by a department head at least 6 weeks in advance.'
+  [1] 'Nimbus Robotics — Employee Handbook > Sick Leave\nEmployees may take up to 12 days of paid sick leave per year. For absences longer than 3 consecutive days, a medical certificate must be uploaded to the HR portal "PeopleDesk" within 48 hours of returning to work.'
+  [2] 'Nimbus Robotics — Employee Handbook > Remote Work Policy\nNimbus follows a "Core Days" hybrid model. All employees must be in the office on Tuesdays and Thursdays, which are the Core Days. The remaining days may be worked remotely. Employees working remotely must be reachable on Slack between 10:00 and 16:00 local time. Fully remote arrangements require written approval from the VP of People, Dana Okafor.'
+  ^ one topic per chunk, and each chunk says where it came from.
+
+================================================================================
+PART 2: why not just embed the whole document?
+================================================================================
+  similarity(query, WHOLE handbook)        = 0.681
+  similarity(query, 'Home Office' chunk)   = 0.840
+  -> one vector for 5 topics is a blurry average of all of them.
+     A focused chunk matches more strongly, and it's cheaper to put
+     in the prompt.
+
+================================================================================
+PART 3: contextual headers (the fix for Lesson 1, Q2)
+================================================================================
+  WITHOUT header: "The lidar's measured distances disagree with known fiducial marker positions by more than "...
+  WITH header   : "Zephyr-3 Error Codes and Troubleshooting > E-417: Lidar Calibration Drift\nThe lidar's meas"...
+  Without the header, the chunk text never says 'E-417' or 'Zephyr-3'
+  (that was in the heading line, which chunking removed)!
+
+  similarity(query, chunk WITHOUT header) = 0.518
+  similarity(query, chunk WITH header)    = 0.584
+  -> the header gives both better retrieval AND gives the LLM the
+     context it needs to answer. (In Lesson 1 it refused for lack of it.)
+
+================================================================================
+PART 4: chunk the whole knowledge base
+================================================================================
+  5 documents -> 24 chunks
+  words per chunk: min=28, avg=51, max=79
+  Example chunk with metadata:
+    id      : 'employee_handbook.md#1'
+    text    : 'Nimbus Robotics — Employee Handbook > Sick Leave\nEmployees may take up to 12 days of paid sick leave per year. For absences longer than 3 consecutive days, a medical certificate must be uploaded to the HR portal "PeopleDesk" within 48 hours of returning to work.'
+    source  : 'employee_handbook.md'
+    section : 'Sick Leave'

@@ -1,0 +1,68 @@
+================================================================================
+PART 1: cosine similarity by hand (toy 2-D vectors)
+================================================================================
+  cos(cat  , dog  ) = 0.991
+  cos(car  , truck) = 0.995
+  cos(cat  , car  ) = 0.220
+  -> Close directions score near 1. Unrelated directions score lower.
+
+================================================================================
+PART 2: a real embedding
+================================================================================
+  Dimensions : 768
+  First 8    : [0.0005, 0.0154, -0.1758, -0.0239, -0.0198, -0.0035, -0.0117, 0.0011]
+  Length |v| : 1.0000
+  -> A sentence became a list of 768 numbers. Each number is not
+     human-readable on its own; the MEANING lives in the direction.
+
+================================================================================
+PART 3: similarity matrix
+================================================================================
+  [0] How many vacation days do I get?
+  [1] Employees receive 23 days of paid annual leave.
+  [2] What's my time-off allowance this year?
+  [3] The robot battery lasts about 9 hours.
+  [4] How long does the Zephyr-3 run on one charge?
+  [5] Rotterdam is a port city in the Netherlands.
+
+         [0]   [1]   [2]   [3]   [4]   [5] 
+  [0]  1.00  0.64  0.62  0.43  0.51  0.53 
+  [1]  0.64  1.00  0.63  0.39  0.42  0.39 
+  [2]  0.62  0.63  1.00  0.38  0.45  0.48 
+  [3]  0.43  0.39  0.38  1.00  0.61  0.32 
+  [4]  0.51  0.42  0.45  0.61  1.00  0.42 
+  [5]  0.53  0.39  0.48  0.32  0.42  1.00 
+
+  Look at [0] vs [2]: 'vacation days' and 'time-off allowance' share
+  almost NO words, yet score high. [3] vs [4] likewise (battery/charge).
+  Unrelated pairs score lower. The absolute numbers depend on the model;
+  what matters is the RANKING.
+
+================================================================================
+PART 4: semantic search vs keyword search
+================================================================================
+  Query: 'How much holiday can I take?'
+  keyword  cosine  document
+        0   0.596  Every full-time employee receives 23 days of paid annual leave per cal
+        0   0.593  Passwords must be at least 14 characters long and are rotated every 18
+        0   0.550  All employees must be in the office on Tuesdays and Thursdays.
+        0   0.527  The Zephyr-3 docks itself at a charging station when the battery falls
+  margin between #1 and #2: 0.003
+
+  Query: 'When should I recharge the robot?'
+  keyword  cosine  document
+        2   0.631  The Zephyr-3 docks itself at a charging station when the battery falls
+        1   0.530  All employees must be in the office on Tuesdays and Thursdays.
+        0   0.522  Passwords must be at least 14 characters long and are rotated every 18
+        0   0.408  Every full-time employee receives 23 days of paid annual leave per cal
+  margin between #1 and #2: 0.100
+
+  Keyword search finds 0 useful overlapping words ('holiday' is not
+  'annual leave', 'recharge' is not 'charging'). Embeddings still rank
+  the right document #1. That's why RAG retrieves with embeddings.
+
+  BUT notice the margins are small. Small embedding models squeeze all
+  scores into a narrow band, so #2 can be almost as 'similar' as #1.
+  That's why real systems retrieve the top-k (not just 1) and add
+  hybrid search / reranking (Lesson 7).
+
